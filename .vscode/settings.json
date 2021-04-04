@@ -1,0 +1,13 @@
+{
+  "flow.useNPMPackagedFlow": true,
+  "javascript.validate.enable": false,
+  "typescript.suggest.autoImports": false,
+  "javascript.suggest.autoImports": false,
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.renderIndentGuides": false,
+  "html.autoClosingTags": false,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": false,
+  "editor.detectIndentation": true,
+  "editor.formatOnSave": false
+}
