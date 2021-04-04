@@ -26,10 +26,11 @@ const styles = StyleSheet.create({
 	container: {
 		...ui.styles.content,
 		...ui.styles.fontShadow,
+		...ui.styles.shadow,
 		backgroundColor: ui.blue,
 		paddingRight: 32,
 		paddingLeft: 32,
-		padding: 8,
+		padding: 10,
 		flex: 0
 	},
 	font: {
