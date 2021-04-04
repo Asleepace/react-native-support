@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 /** Colors - default colors that appear throughout the app **/
-export const color = '#EEE'
+export const color = '#EBEFF1'
 export const gray = '#202429'
 export const blue = '#61dafb'
 export const navy = '#2A7FB7'
@@ -15,7 +15,7 @@ export const fontFamily = 'System'
 export const letterSpacing = undefined
 export const textShadowOffset = { width: 0, height: 1}
 export const textShadowColor = shadow
-export const textShadowRadius = 1
+export const textShadowRadius = 2
 export const fontWeight = '600'
 export const borderRadius = 8
 export const lineHeight = 22
@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
 		fontWeight,
 		lineHeight,
 		fontSize,
-		color,
+		color: '#B8C9F0'
 	},
 	fontShadow: {
 		textShadowColor,

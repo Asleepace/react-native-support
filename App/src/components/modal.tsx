@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, StyleSheet, Text, Pressable, View, ViewProps } from "react-native";
+import { Modal, StyleSheet, Text, Pressable, View, ViewProps, Animated } from "react-native";
 import * as ui from '../assets'
 
 export interface Props extends ViewProps {
@@ -7,16 +7,29 @@ export interface Props extends ViewProps {
 }
 
 export interface State {
+	opacity: Animated.Value
 	visible: boolean
 }
 
 
 export class ModalContainer extends React.Component<Props, State> {
 
-	state = { visible: false}
-
+	constructor(props: Props) {
+		super(props)
+		this.state = {
+			opacity: new Animated.Value(0),
+			visible: false
+		}
+	}
+	
+	
   public hide = () => this.setState({ visible: false})
 	public show = () => this.setState({ visible: true })
+	public face = () => Animated.timing(this.state.opacity, { 
+		toValue: this.state.visible ? 1 : 0,
+		useNativeDriver: true,
+		duration: 0.3 
+	})
 
 	render () {
 		return (
