@@ -17,7 +17,7 @@ import * as common from './src/assets'
  export default () => {
    return (
      <SafeAreaView style={styles.container}>
-       <ScrollView contentInsetAdjustmentBehavior={"automatic"} style={styles.container} contentContainerStyle={styles.content}>
+       <ScrollView contentInsetAdjustmentBehavior={"automatic"} style={styles.flex} contentContainerStyle={styles.container}>
           <Button text={"Open support"} open={() => console.log('Button pressed!')} />
        </ScrollView>
      </SafeAreaView>

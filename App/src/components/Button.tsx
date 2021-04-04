@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, TouchableOpacity, Text } from 'react-native'
-import * as common from '../assets'
+import * as ui from '../assets'
 
 export type ButtonProps = {
 	text?: string
@@ -23,5 +23,17 @@ export const Button = (props: ButtonProps) =>
  * 
  */
 const styles = StyleSheet.create({
-	...common.styles,
+	container: {
+		...ui.styles.content,
+		...ui.styles.fontShadow,
+		backgroundColor: ui.blue,
+		paddingRight: 32,
+		paddingLeft: 32,
+		padding: 8,
+		flex: 0
+	},
+	font: {
+		...ui.styles.fontShadow,
+		...ui.styles.font,
+	}
 })
