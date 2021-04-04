@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, StyleSheet, Text, Pressable, View, ViewProps, Animated, Easing, SafeAreaView } from 'react-native';
+import { Modal, StyleSheet, Text, TextInput, View, ViewProps, Animated, Easing, SafeAreaView } from 'react-native';
 import * as ui from '../assets'
 
 export interface Props extends ViewProps {
@@ -40,6 +40,8 @@ export class ModalContainer extends React.Component<Props, State> {
 				<SafeAreaView style={styles.container}>
 					<View style={styles.card}>
 						<ModalHeader title={"Customer Support"} />
+						<ModalInputs placeholder={"colin@wallwisher.com"} multiline={false} />
+						<ModalInputs placeholder={"Please enter your message here..."} multiline={false} />
 					</View>
 				</SafeAreaView>
 			</Modal>
@@ -47,9 +49,13 @@ export class ModalContainer extends React.Component<Props, State> {
 	}
 }
 
+const ModalInputs = (props:{ placeholder: string, multiline: boolean }) => 
+	<View style={styles.inputFrame}>
+	<TextInput placeholder={props.placeholder} style={styles.inputStyle} multiline={props.multiline}
+						 placeholderTextColor={"rgba(255, 255, 255, 0.7)"} /></View>
 
-interface ModalHeaderProps { title: string}
-const ModalHeader = (props: ModalHeaderProps) => 
+
+const ModalHeader = (props:{ title: string}) => 
 	<View style={styles.headerFrame}>
 		<Text style={styles.headerTitle}>{props.title}</Text>
 	</View>
@@ -62,11 +68,11 @@ const styles = StyleSheet.create({
 		flex: 1,
   },
   card: {
-		width: '90%',
-		height: '90%',
+		width: '99%',
+		height: '99%',
     backgroundColor: "#2C3E4F",
     borderRadius: 20,
-    padding: ui.padding * 2,
+    padding: ui.padding,
     shadowColor: ui.black,
 		alignItems: "center",
     shadowOffset: {
@@ -86,11 +92,28 @@ const styles = StyleSheet.create({
 	headerTitle: {
 		justifyContent: 'center',
 		alignItems: 'center',
+		fontWeight: 'bold',
+		fontSize: 18,
+		color: 'white',
 		padding: 20,
 	},
 	headerFrame: {
-		backgroundColor: 'rgba(0, 0, 0, 0.15)',
+		backgroundColor: 'rgba(0, 0, 0, 0.07)',
+		alignItems: 'center',
 		borderRadius: 20,
 		width: '100%',
+	},
+	inputFrame: {
+		backgroundColor: 'rgba(0, 0, 0, 0.07)',
+		borderRadius: 20,
+		padding: ui.padding * 2,
+		marginTop: ui.padding,
+		width: '100%',
+	},
+	inputStyle: {
+		fontSize: 18,
+		color: 'white',
+		minHeight: 200,
+		textAlignVertical: 'top'
 	}
 });
