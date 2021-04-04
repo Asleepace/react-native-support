@@ -37,9 +37,9 @@ export class ModalContainer extends React.Component<Props, State> {
 		return (
 			<Modal animationType={"slide"} transparent={true} visible={visible} onRequestClose={this.hide} onShow={this.fade}>
 				<Animated.View style={{ ...styles.background, opacity }} />
-				<SafeAreaView style={styles.centeredView}>
-					<View style={styles.modalView}>
-						{ this.props.children }
+				<SafeAreaView style={styles.container}>
+					<View style={styles.card}>
+						<ModalHeader title={"Customer Support"} />
 					</View>
 				</SafeAreaView>
 			</Modal>
@@ -47,19 +47,26 @@ export class ModalContainer extends React.Component<Props, State> {
 	}
 }
 
+
+interface ModalHeaderProps { title: string}
+const ModalHeader = (props: ModalHeaderProps) => 
+	<View style={styles.headerFrame}>
+		<Text style={styles.headerTitle}>{props.title}</Text>
+	</View>
+
 const styles = StyleSheet.create({
-  centeredView: {
+  container: {
     justifyContent: "center",
     alignItems: "center",
 		margin: 16,
 		flex: 1,
   },
-  modalView: {
-		width: '100%',
-		height: '100%',
+  card: {
+		width: '90%',
+		height: '90%',
     backgroundColor: "#2C3E4F",
     borderRadius: 20,
-    padding: ui.padding,
+    padding: ui.padding * 2,
     shadowColor: ui.black,
 		alignItems: "center",
     shadowOffset: {
@@ -70,30 +77,20 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5
   },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center"
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center"
-  },
 	background: {
 		position: 'absolute',
 		left:0, right:0, top:0, bottom: 0,
 		backgroundColor: ui.black,
 		flex: 1,
+	},
+	headerTitle: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		padding: 20,
+	},
+	headerFrame: {
+		backgroundColor: 'rgba(0, 0, 0, 0.15)',
+		borderRadius: 20,
+		width: '100%',
 	}
 });
