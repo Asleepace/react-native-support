@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, StyleSheet, Text, Pressable, View, ModalProps } from "react-native";
 import * as ui from '../assets'
 
-export interface Props extends ModalProps {
+export interface Props {
 
 }
 
@@ -11,9 +11,11 @@ export interface State {
 }
 
 
-export const showModal = (props: Props) => {
+
+
+export function showModal(props?: Props) {
 	const [ visisble, setVisible ] = useState(true)
-	const close = () => setVisible(false)
+	const close = () => {}
 	return (
 		<Modal animationType={"slide"} transparent={true} visible={visisble} onRequestClose={close}>
 			<View style={styles.centeredView}>
