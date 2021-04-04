@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Modal, StyleSheet, Text, Pressable, View, ModalProps } from "react-native";
+import { Modal, StyleSheet, Text, Pressable, View, ViewProps } from "react-native";
 import * as ui from '../assets'
 
-export interface Props {
+export interface Props extends ViewProps {
 
 }
 
@@ -11,23 +11,27 @@ export interface State {
 }
 
 
+export class ModalContainer extends React.Component<Props, State> {
 
+	state = { visible: false}
 
-export function showModal(props?: Props) {
-	const [ visisble, setVisible ] = useState(true)
-	const close = () => {}
-	return (
-		<Modal animationType={"slide"} transparent={true} visible={visisble} onRequestClose={close}>
-			<View style={styles.centeredView}>
-				<View style={styles.modalView}>
-					<Text style={styles.modalText}>Hello World!</Text>
-					<Pressable style={[styles.button, styles.buttonClose]} onPress={close}>
-						<Text style={styles.textStyle}>Hide Modal</Text>
-					</Pressable>
+  public hide = () => this.setState({ visible: false})
+	public show = () => this.setState({ visible: true })
+
+	render () {
+		return (
+			<Modal animationType={"slide"} transparent={true} visible={this.state.visible} onRequestClose={this.hide}>
+				<View style={styles.centeredView}>
+					<View style={styles.modalView}>
+						<Text style={styles.modalText}>Hello World!</Text>
+						<Pressable style={[styles.button, styles.buttonClose]} onPress={this.hide}>
+							<Text style={styles.textStyle}>Hide Modal</Text>
+						</Pressable>
+					</View>
 				</View>
-			</View>
-		</Modal>
-	)
+			</Modal>
+		)
+	}
 }
 
 const styles = StyleSheet.create({

@@ -10,19 +10,28 @@
 
 import React from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
-import { showModal } from './src/components/modal'
+import { ModalContainer } from './src/components/modal'
 import { Button } from './src/components/button'
 import * as common from './src/assets'
 
 
-export default () => {
-  return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView contentInsetAdjustmentBehavior={"automatic"} style={styles.flex} contentContainerStyle={styles.container}>
-        <Button text={"Open support"} open={() => showModal()} />
-      </ScrollView>
-    </SafeAreaView>
-  )
+export default class App extends React.Component<{}> {
+
+  private modal: React.RefObject<ModalContainer> = React.createRef()
+
+  private showModal = () => this.modal.current?.show()
+  private hideModal = () => this.modal.current?.hide()
+
+  render() {
+    return (
+      <SafeAreaView style={styles.container}>
+        <ScrollView contentInsetAdjustmentBehavior={"automatic"} style={styles.flex} contentContainerStyle={styles.container}>
+          <Button text={"Open support"} open={this.showModal} />
+          <ModalContainer ref={this.modal} />
+        </ScrollView>
+      </SafeAreaView>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
