@@ -24,14 +24,12 @@ export class ModalContainer extends React.Component<Props, State> {
 	
   public hide = () => this.setState({ visible: false}, this.fade)
 	public show = () => this.setState({ visible: true })
-	public fade = () => new Promise(resolve => {
-		Animated.timing(this.state.opacity, { 
-			useNativeDriver: true,
-			easing: Easing.ease,
-			duration: 400,
-			toValue: 0.3,
-		}).start(resolve)
-	})
+	public fade = () => Animated.timing(this.state.opacity, { 
+		useNativeDriver: true,
+		easing: Easing.ease,
+		duration: 400,
+		toValue: 0.3,
+	}).start()
 
 
 	render () {
@@ -41,10 +39,7 @@ export class ModalContainer extends React.Component<Props, State> {
 				<Animated.View style={{ ...styles.background, opacity }} />
 				<SafeAreaView style={styles.centeredView}>
 					<View style={styles.modalView}>
-						<Text style={styles.modalText}>Hello World!</Text>
-						<Pressable style={[styles.button, styles.buttonClose]} onPress={this.hide}>
-							<Text style={styles.textStyle}>Hide Modal</Text>
-						</Pressable>
+						{ this.props.children }
 					</View>
 				</SafeAreaView>
 			</Modal>
@@ -62,8 +57,7 @@ const styles = StyleSheet.create({
   modalView: {
 		width: '100%',
 		height: '100%',
-    margin: 60,
-    backgroundColor: "#3D5166",
+    backgroundColor: "#2C3E4F",
     borderRadius: 20,
     padding: ui.padding,
     shadowColor: ui.black,
