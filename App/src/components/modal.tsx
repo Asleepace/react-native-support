@@ -22,18 +22,19 @@ export class ModalContainer extends React.Component<Props, State> {
 		}
 	}
 	
-	
-  public hide = () => this.setState({ visible: false})
+  public hide = () => this.setState({ visible: false}, this.fade)
 	public show = () => this.setState({ visible: true })
-	public face = () => Animated.timing(this.state.opacity, { 
-		toValue: this.state.visible ? 1 : 0,
+	public fade = () => Animated.timing(this.state.opacity, { 
 		useNativeDriver: true,
-		duration: 0.3 
-	})
+		duration: 200,
+		toValue: 0.3,
+	}).start()
 
 	render () {
+		const { opacity, visible } = this.state
 		return (
-			<Modal animationType={"slide"} transparent={true} visible={this.state.visible} onRequestClose={this.hide}>
+			<Modal animationType={"slide"} transparent={true} visible={visible} onRequestClose={this.hide} onShow={this.fade}>
+				<Animated.View style={{ ...styles.background, opacity }} />
 				<View style={styles.centeredView}>
 					<View style={styles.modalView}>
 						<Text style={styles.modalText}>Hello World!</Text>
@@ -88,5 +89,11 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center"
-  }
+  },
+	background: {
+		position: 'absolute',
+		left:0, right:0, top:0, bottom: 0,
+		backgroundColor: ui.black,
+		flex: 1,
+	}
 });
