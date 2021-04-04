@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, StyleSheet, Text, Pressable, View, ViewProps, Animated, Easing } from "react-native";
+import { Modal, StyleSheet, Text, Pressable, View, ViewProps, Animated, Easing, SafeAreaView } from 'react-native';
 import * as ui from '../assets'
 
 export interface Props extends ViewProps {
@@ -28,7 +28,7 @@ export class ModalContainer extends React.Component<Props, State> {
 		Animated.timing(this.state.opacity, { 
 			useNativeDriver: true,
 			easing: Easing.ease,
-			duration: 300,
+			duration: 400,
 			toValue: 0.3,
 		}).start(resolve)
 	})
@@ -39,14 +39,14 @@ export class ModalContainer extends React.Component<Props, State> {
 		return (
 			<Modal animationType={"slide"} transparent={true} visible={visible} onRequestClose={this.hide} onShow={this.fade}>
 				<Animated.View style={{ ...styles.background, opacity }} />
-				<View style={styles.centeredView}>
+				<SafeAreaView style={styles.centeredView}>
 					<View style={styles.modalView}>
 						<Text style={styles.modalText}>Hello World!</Text>
 						<Pressable style={[styles.button, styles.buttonClose]} onPress={this.hide}>
 							<Text style={styles.textStyle}>Hide Modal</Text>
 						</Pressable>
 					</View>
-				</View>
+				</SafeAreaView>
 			</Modal>
 		)
 	}
@@ -54,23 +54,25 @@ export class ModalContainer extends React.Component<Props, State> {
 
 const styles = StyleSheet.create({
   centeredView: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22
+		margin: 16,
+		flex: 1,
   },
   modalView: {
-    margin: 20,
-    backgroundColor: "white",
+		width: '100%',
+		height: '100%',
+    margin: 60,
+    backgroundColor: "#3D5166",
     borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
+    padding: ui.padding,
+    shadowColor: ui.black,
+		alignItems: "center",
     shadowOffset: {
       width: 0,
       height: 2
     },
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.32,
     shadowRadius: 4,
     elevation: 5
   },
