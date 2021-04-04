@@ -28,9 +28,8 @@ const styles = StyleSheet.create({
 		...ui.styles.fontShadow,
 		...ui.styles.shadow,
 		backgroundColor: ui.blue,
-		paddingRight: 32,
-		paddingLeft: 32,
-		padding: 10,
+		padding: ui.padding,
+		
 		flex: 0
 	},
 	font: {
