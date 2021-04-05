@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, StyleSheet, Text, TextInput, View, ViewProps, Animated, Easing, SafeAreaView } from 'react-native';
+import { Modal, StyleSheet, Text, TextInput, View, ViewProps, Animated, Easing, SafeAreaView, TouchableOpacity } from 'react-native';
 import * as ui from '../assets'
 
 export interface Props extends ViewProps {
@@ -26,7 +26,7 @@ export class ModalContainer extends React.Component<Props, State> {
 	public show = () => this.setState({ visible: true })
 	public fade = () => Animated.timing(this.state.opacity, { 
 		useNativeDriver: true,
-		easing: Easing.ease,
+		easing: Easing.inOut(Easing.ease),
 		duration: 400,
 		toValue: 0.3,
 	}).start()
@@ -78,7 +78,15 @@ const ModalHeader = (props:{ title: string}) =>
 		<Text style={styles.headerStyle}>{props.title}</Text>
 	</View>
 
+const ModalButton = (props: { title: string }) => 
+	<TouchableOpacity style={styles.buttonContainer}>
+		<Text style={styles.headerStyle}>{props.title}</Text>
+	</TouchableOpacity>
+
 const styles = StyleSheet.create({
+	buttonCotainer: {
+
+	},
   container: {
     justifyContent: "center",
     alignItems: "center",
