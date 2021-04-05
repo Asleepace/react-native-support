@@ -40,8 +40,8 @@ export class ModalContainer extends React.Component<Props, State> {
 				<SafeAreaView style={styles.container}>
 					<View style={styles.card}>
 						<ModalHeader title={"Customer Support"} />
-						<ModalInputs placeholder={"colin@wallwisher.com"} multiline={false} />
-						<ModalInputs placeholder={"Please enter your message here..."} multiline={false} />
+						<ModalContact placeholder={"colin@wallwisher.com"} />
+						<ModalInputs placeholder={"Please enter your message here..."} />
 					</View>
 				</SafeAreaView>
 			</Modal>
@@ -49,15 +49,33 @@ export class ModalContainer extends React.Component<Props, State> {
 	}
 }
 
-const ModalInputs = (props:{ placeholder: string, multiline: boolean }) => 
-	<View style={styles.inputFrame}>
-	<TextInput placeholder={props.placeholder} style={styles.inputStyle} multiline={props.multiline}
-						 placeholderTextColor={"rgba(255, 255, 255, 0.7)"} /></View>
+const ModalContact = (props:{ placeholder: string }) => 
+	<View style={styles.contactContainer}>
+	<TextInput placeholder={props.placeholder} style={styles.contactStyle}
+						 underlineColorAndroid={ui.transparent}
+						 placeholderTextColor={ui.placeholder}
+						 keyboardType={'email-address'}
+						 autoCapitalize={'none'}
+						 returnKeyType={'next'}
+						 autoCorrect={false}
+						 multiline={false}
+						 /></View>
+
+const ModalInputs = (props:{ placeholder: string }) => 
+	<View style={styles.inputContainer}>
+	<TextInput placeholder={props.placeholder} style={styles.inputStyle} 
+	           underlineColorAndroid={ui.transparent}
+						 placeholderTextColor={ui.placeholder}
+						 keyboardType={'default'}
+						 autoCorrect={true}
+						 autoFocus={true}
+						 multiline={true}
+						 /></View>
 
 
 const ModalHeader = (props:{ title: string}) => 
-	<View style={styles.headerFrame}>
-		<Text style={styles.headerTitle}>{props.title}</Text>
+	<View style={styles.headerContainer}>
+		<Text style={styles.headerStyle}>{props.title}</Text>
 	</View>
 
 const styles = StyleSheet.create({
@@ -68,8 +86,8 @@ const styles = StyleSheet.create({
 		flex: 1,
   },
   card: {
-		width: '99%',
-		height: '99%',
+		width: '100%',
+		height: '90%',
     backgroundColor: "#2C3E4F",
     borderRadius: 20,
     padding: ui.padding,
@@ -89,31 +107,44 @@ const styles = StyleSheet.create({
 		backgroundColor: ui.black,
 		flex: 1,
 	},
-	headerTitle: {
+	headerContainer: {
+		backgroundColor: 'rgba(0, 0, 0, 0.07)',
+		alignItems: 'center',
+		borderRadius: 20,
+		width: '100%',
+	},
+	headerStyle: {
 		justifyContent: 'center',
 		alignItems: 'center',
 		fontWeight: 'bold',
 		fontSize: 18,
 		color: 'white',
-		padding: 20,
-	},
-	headerFrame: {
-		backgroundColor: 'rgba(0, 0, 0, 0.07)',
-		alignItems: 'center',
-		borderRadius: 20,
-		width: '100%',
-	},
-	inputFrame: {
-		backgroundColor: 'rgba(0, 0, 0, 0.07)',
-		borderRadius: 20,
 		padding: ui.padding * 2,
+	},
+	contactContainer: {
+		backgroundColor: 'rgba(0, 0, 0, 0.07)',
 		marginTop: ui.padding,
+		padding: ui.padding * 2,
+		borderRadius: 20,
 		width: '100%',
 	},
-	inputStyle: {
+	contactStyle: {
 		fontSize: 18,
 		color: 'white',
-		minHeight: 200,
-		textAlignVertical: 'top'
-	}
+	},
+	inputContainer: {
+		backgroundColor: 'rgba(0, 0, 0, 0.07)',
+		padding: ui.padding * 2,
+		marginTop: ui.padding,
+		borderRadius: 20,
+		width: '100%',
+		flex: 1,
+	},
+	inputStyle: {
+		textAlignVertical: 'top',
+		color: 'white',
+		fontSize: 18,
+		padding: 0,
+		flex: 1,
+	},
 });

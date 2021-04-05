@@ -8,6 +8,10 @@ export const navy = '#2A7FB7'
 export const white = 'white'
 export const black = 'black'
 export const shadow = 'rgba(0, 0, 0, 0.3)'
+export const highlight = 'rgba(255, 255, 255, 0.77)'
+export const contrast = 'rgba(0, 0, 0, 0.7)'
+export const transparent = 'transparent'
+export const placeholder = 'rgba(255, 255, 255, 0.33)'
 
 
 /** Numeric - default numberic values for padding, margin etc **/
