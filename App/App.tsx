@@ -13,6 +13,7 @@ import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { ModalContainer } from './src/components/modal'
 import { Button } from './src/components/button'
 import * as common from './src/assets'
+import { senRequestToFront } from './src/api/request'
 
 
 export default class App extends React.Component<{}> {
@@ -26,7 +27,7 @@ export default class App extends React.Component<{}> {
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView contentInsetAdjustmentBehavior={"automatic"} style={styles.flex} contentContainerStyle={styles.container}>
-          <Button text={"Open support"} open={this.showModal} />
+          <Button text={"Open support"} open={() => senRequestToFront()} />
           <ModalContainer ref={this.modal} />
         </ScrollView>
       </SafeAreaView>
