@@ -4,11 +4,7 @@
  * 
  */
 
-export const senRequestToFront = () => {
-
-}
-
-fetch('https://padlet.api.frontapp.com/channels/cha_4ikcv/incoming_messages', {
+export const senRequestToFront = () => fetch('https://padlet.api.frontapp.com/channels/cha_4ikcv/incoming_messages', {
 	method: 'POST',
 	headers: {
 		'Accept': 'application/json',
